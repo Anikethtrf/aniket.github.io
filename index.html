@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Comic Style Portfolio</title>
+    <style>
+        /* Basic Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Comic Sans MS', cursive, sans-serif;
+            background-color: #f0f0f0;
+            color: #333;
+            overflow: hidden; /* Hide scroll until start page is closed */
+        }
+
+        /* Start Page Styling */
+        .start-page {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle, #ffe259, #ffa751);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+            color: #fff;
+            text-align: center;
+        }
+        .start-page h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 0 #333;
+        }
+        .comic-image {
+            width: 300px;
+            height: auto;
+            margin-bottom: 20px;
+            border: 5px solid #000;
+            box-shadow: 10px 10px 0 #333;
+            border-radius: 10px;
+        }
+        .start-button {
+            background: #ffeb3b;
+            color: #333;
+            font-size: 24px;
+            padding: 15px 30px;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background 0.3s ease;
+        }
+        .start-button:hover {
+            background: #f39c12;
+        }
+
+        /* Fade-out animation for Start Page */
+        .start-page.fade-out {
+            animation: fadeOut 1s forwards;
+        }
+        @keyframes fadeOut {
+            to {
+                opacity: 0;
+                visibility: hidden;
+            }
+        }
+
+        /* Navigation Bar */
+        nav {
+            background: #333;
+            color: #fff;
+            padding: 10px;
+            text-align: center;
+        }
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            padding: 10px 20px;
+            display: inline-block;
+        }
+        nav a:hover {
+            background: #555;
+        }
+
+        /* Portfolio Container */
+        .portfolio-container {
+            max-width: 900px;
+            margin: 20px auto;
+            padding: 20px;
+            background: #fff;
+            border: 2px solid #000;
+            box-shadow: 5px 5px 0 #333;
+            opacity: 0;
+            transition: opacity 1s ease 0.5s; /* Delay for fade-in */
+        }
+
+        /* Show portfolio after start page is hidden */
+        .portfolio-container.visible {
+            opacity: 1;
+        }
+
+        /* Comic Style Panel */
+        .comic-panel {
+            border: 2px solid #000;
+            padding: 20px;
+            margin-bottom: 20px;
+            position: relative;
+            background: #fafafa;
+            transition: background-color 0.3s ease, border-color 0.3s ease;
+            cursor: pointer;
+            transform: translateY(20px);
+            opacity: 0;
+            animation: panelFadeIn 0.6s ease forwards 1s;
+        }
+
+        /* Hover Animation for Panels */
+        .comic-panel:hover {
+            transform: scale(1.02);
+            box-shadow: 8px 8px 0 #333;
+        }
+
+        /* Fade-in Effect for Panels */
+        @keyframes panelFadeIn {
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        /* Clicked State */
+        .comic-panel.clicked {
+            background-color: #ffeb3b;
+            border-color: #f39c12;
+            transition: background-color 0.3s ease, border-color 0.3s ease;
+        }
+
+        /* Image Styles */
+        .comic-image-panel {
+            width: 100%;
+            height: auto;
+            border: 2px solid #000;
+            margin-bottom: 10px;
+        }
+
+        /* Speech Bubble */
+        .speech-bubble {
+            position: absolute;
+            top: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #fff;
+            border: 2px solid #000;
+            padding: 10px 20px;
+            border-radius: 20px;
+            box-shadow: 3px 3px 0 #333;
+        }
+        .speech-bubble:after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-width: 10px;
+            border-style: solid;
+            border-color: #fff transparent transparent transparent;
+        }
+
+        /* Action Text */
+        .action-text {
+            font-size: 32px;
+            font-weight: bold;
+            color: #e74c3c;
+            text-shadow: 2px 2px 0 #333;
+            display: inline-block;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Start Page -->
+    <div class="start-page">
+        <h1>Welcome to My Comic Portfolio!</h1>
+        <p>Explore my work, skills, and projects</p>
+        <img src="por.jpg" alt="Comic Style Image" class="comic-image"> <!-- Replace with your image -->
+        <button class="start-button" onclick="startPortfolio()">Start</button>
+    </div>
+
+    <!-- Navigation Bar -->
+    <nav>
+        <a href="#about">About Me</a>
+        <a href="#skills">Skills</a>
+        <a href="#projects">Projects</a>
+        <a href="#certificates">Certificates</a>
+        <a href="#contact">Contact</a>
+    </nav>
+
+    <div class="portfolio-container">
+        <!-- Cover Page -->
+        <div class="comic-panel">
+            <h2>Welcome to My Comic Style Portfolio!</h2>
+            <div class="speech-bubble">Hi there! I'm [Your Name].</div>
+            <p>I'm a creative professional who loves combining visual storytelling with my skills. Dive into my projects and discover what I can do!</p>
+            <img src="yuoi.jpg" alt="Cover Image" class="comic-image-panel"> <!-- Replace with your image -->
+        </div>
+
+        <!-- About Me Section -->
+        <div class="comic-panel" id="about">
+            <h2>About Me</h2>
+            <div class="speech-bubble">Nice to meet you!</div>
+            <p>I'm [Your Name], a passionate designer and developer with a love for visual storytelling and creative problem-solving.</p>
+            <img src="about .jpg" alt="About Me Image" class="comic-image-panel"> <!-- Replace with your image -->
+        </div>
+
+        <!-- Skills Section -->
+        <div class="comic-panel" id="skills">
+            <h2>Skills & Experience</h2>
+            <p>Supercharged in web development, 3D modeling with Blender, and game development. I wield tools like <span class="action-text">HTML</span>, <span class="action-text">CSS</span>, and <span class="action-text">JavaScript</span>.</p>
+            <img src="skills .jpg" alt="Skills Image" class="comic-image-panel"> <!-- Replace with your image -->
+        </div>
+
+        <!-- Certificates Section -->
+        <div class="comic-panel" id="certificates">
+            <h2>Certificates</h2>
+            <p>Certified by "Great learning". Gained in-depth knowledge and hands-on experience in HTML, CSS, and JavaScript.</p>
+            <img src="macer.jpg" alt="Certificate in Web Development" class="comic-image-panel"> <!-- Replace with your image -->
+        </div>
+                <div class="comic-panel" id="certificates">
+            <h2>Certificates</h2>
+            <p>Certified by "Great learning". Gained in-depth knowledge and hands-on experience in HTML, CSS, and JavaScript.</p>
+            <img src="macewr.jpg" alt="Certificate in Web Development" class="comic-image-panel"> <!-- Replace with your image -->
+        </div>
+
+        <!-- Project Showcase -->
+        <div class="comic-panel" id="projects">
+            <h2>Project 1: Anime streaming web</h2>
+            <p>Built an amazing web for anime where you can watch more than 80 anime for free. It comes with user authentication, and a sleek design.</p>
+            <img src="web.jpg" alt="Awesome Web App" class="comic-image-panel"> <!-- Replace with your image -->
+        </div>
+
+        <div class="comic-panel">
+            <h2>Project 2: 3D Modeling in Blender</h2>
+            <p>Created stunning 3D models and animations using Blender. My work ranges from character modeling to realistic environmental scenes.</p>
+            <img src="project2-image.jpg" alt="Blender Models" class="comic-image-panel"> <!-- Replace with your image -->
+        </div>
+
+        <!-- Contact Section -->
+        <div class="comic-panel" id="contact">
+            <h2>Contact Me!</h2>
+            <div class="speech-bubble">Let's create something amazing together!</div>
+            <p>Email: yourname@example.com<br>Phone: (123) 456-7890</p>
+            <img src="follow .jpg" alt="Contact Image" class="comic-image-panel"> <!-- Replace with your image -->
+        </div>
+    </div>
+
+    <!-- JavaScript for Start Page and Click Animation -->
+    <script>
+        function startPortfolio() {
+            document.querySelector('.start-page').classList.add('fade-out'); // Hide start page
+            document.querySelector('.portfolio-container').classList.add('visible'); // Show portfolio
+            document.body.style.overflow = "auto"; // Enable scrolling
+        }
+
+        document.querySelectorAll('.comic-panel').forEach(panel => {
+            panel.addEventListener('click', function () {
+                this.classList.toggle('clicked');
+            });
+        });
+    </script>
+</body>
+</html>

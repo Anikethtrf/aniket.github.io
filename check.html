@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Comic Style Portfolio Book</title>
+    <style>
+        /* Basic Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Comic Sans MS', cursive, sans-serif;
+            background-color: #f0f0f0;
+            color: #333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        /* Book Container */
+        .book {
+            width: 80%;
+            max-width: 600px;
+            height: 80vh;
+            perspective: 1500px;
+            position: relative;
+        }
+
+        /* Cover and Pages Styling */
+        .cover, .page {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            backface-visibility: hidden;
+            transform-style: preserve-3d;
+            transition: transform 1s ease-in-out;
+            border: 2px solid #000;
+            border-radius: 10px;
+            box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.2);
+            display: none;
+        }
+
+        /* Cover Page */
+        .cover {
+            background: radial-gradient(circle, #ffe259, #ffa751);
+            color: #fff;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            transform-origin: left;
+            z-index: 10;
+            display: flex; /* Show cover initially */
+        }
+        .cover h1 {
+            font-size: 32px;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 0 #333;
+        }
+        .cover p {
+            font-size: 18px;
+            text-align: center;
+        }
+        .open-button {
+            background: #ffeb3b;
+            color: #333;
+            font-size: 24px;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+            margin-top: 20px;
+            transition: background 0.3s ease;
+        }
+        .open-button:hover {
+            background: #f39c12;
+        }
+
+        /* Inner Page Styles */
+        .page {
+            background-color: #fff;
+            color: #333;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            border-radius: 10px;
+            transform-origin: left;
+        }
+        .page h2 {
+            font-size: 24px;
+            margin-bottom: 10px;
+            text-shadow: 1px 1px 0 #333;
+        }
+        .page img {
+            max-width: 80%;
+            border: 2px solid #333;
+            margin-bottom: 10px;
+            border-radius: 5px;
+        }
+        .page p {
+            font-size: 16px;
+            margin: 10px 0;
+        }
+
+        /* Navigation Buttons */
+        nav {
+            position: absolute;
+            bottom: 20px;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            padding: 0 10px;
+        }
+        .nav-button {
+            background: #333;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background 0.3s ease;
+        }
+        .nav-button:hover {
+            background: #555;
+        }
+
+        /* Page Flip Animations */
+        .page-turn {
+            animation: flipPage 1s forwards;
+        }
+        .page-turn-back {
+            animation: flipPageBack 1s forwards;
+        }
+
+        /* Forward Page Flip */
+        @keyframes flipPage {
+            0% {
+                transform: rotateY(0);
+                display: flex;
+            }
+            50% {
+                transform: rotateY(-90deg);
+            }
+            100% {
+                transform: rotateY(-180deg);
+                display: none;
+            }
+        }
+
+        /* Backward Page Flip */
+        @keyframes flipPageBack {
+            0% {
+                transform: rotateY(-180deg);
+                display: none;
+            }
+            50% {
+                transform: rotateY(-90deg);
+            }
+            100% {
+                transform: rotateY(0);
+                display: flex;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Book Structure -->
+    <div class="book" id="book">
+        <!-- Cover Page -->
+        <div class="cover" id="cover">
+            <h1>My Comic Portfolio</h1>
+            <p>Explore my work, skills, and projects in a comic-style book.</p>
+            <button class="open-button" onclick="openBook()">Open Book</button>
+        </div>
+
+        <!-- Inside Page 1: About Me -->
+        <div class="page" id="page1">
+            <h2>About Me</h2>
+            <p>I'm [Your Name], a designer and developer with a passion for visual storytelling and creative problem-solving.</p>
+            <img src="about-me-image.jpg" alt="About Me Image">
+        </div>
+
+        <!-- Inside Page 2: Skills -->
+        <div class="page" id="page2">
+            <h2>Skills</h2>
+            <p>Supercharged in web development, 3D modeling, and game development. Skilled with tools like HTML, CSS, JavaScript, and Blender.</p>
+            <img src="skills-image.jpg" alt="Skills Image">
+        </div>
+
+        <!-- Inside Page 3: Projects -->
+        <div class="page" id="page3">
+            <h2>Projects</h2>
+            <p><strong>Project 1:</strong> Anime streaming website with over 80 free anime series and user authentication.</p>
+            <img src="project1-image.jpg" alt="Anime Project Image">
+            <p><strong>Project 2:</strong> 3D modeling in Blender, creating character models and realistic scenes.</p>
+            <img src="project2-image.jpg" alt="Blender Project Image">
+        </div>
+
+        <!-- Inside Page 4: Certificates -->
+        <div class="page" id="page4">
+            <h2>Certificates</h2>
+            <p>Certified by "Great Learning" in HTML, CSS, and JavaScript with hands-on project experience.</p>
+            <img src="certificate-image.jpg" alt="Certificate Image">
+        </div>
+
+        <!-- Inside Page 5: Contact -->
+        <div class="page" id="page5">
+            <h2>Contact Me!</h2>
+            <p>Let's collaborate and create something amazing!</p>
+            <p>Email: yourname@example.com<br>Phone: (123) 456-7890</p>
+            <img src="contact-image.jpg" alt="Contact Image">
+        </div>
+    </div>
+
+    <!-- Navigation Buttons -->
+    <nav>
+        <button class="nav-button" onclick="showPreviousPage()">Previous</button>
+        <button class="nav-button" onclick="showNextPage()">Next</button>
+    </nav>
+
+    <script>
+        let currentPage = -1; // Start with cover page
+        const pages = document.querySelectorAll('.page');
+        const cover = document.getElementById('cover');
+
+        function openBook() {
+            cover.style.display = 'none'; // Hide cover
+            currentPage = 0;
+            showCurrentPage();
+        }
+
+        function showCurrentPage() {
+            pages.forEach((page, index) => {
+                page.style.display = index === currentPage ? 'flex' : 'none';
+            });
+        }
+
+        function showNextPage() {
+            if (currentPage < pages.length - 1) {
+                if (currentPage >= 0) pages[currentPage].classList.add('page-turn');
+                currentPage++;
+                showCurrentPage();
+            }
+        }
+
+        function showPreviousPage() {
+            if (currentPage > 0) {
+                pages[currentPage].classList.remove('page-turn');
+                pages[currentPage].classList.add('page-turn-back');
+                currentPage--;
+                showCurrentPage();
+            }
+        }
+    </script>
+</body>
+</html>
